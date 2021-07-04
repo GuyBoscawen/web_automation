@@ -2,11 +2,15 @@ import enum
 
 from functools import wraps
 
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import StaleElementReferenceException
+
 
 class SELECTOR_TYPE(enum.Enum):
     ID = 'id'
     TAG = 'tag'
     CLASS = 'class'
+    XPATH = 'xpath'
 
 
 class ACTION_TYPE(enum.Enum):
@@ -14,11 +18,23 @@ class ACTION_TYPE(enum.Enum):
     FILL = 'fill'
 
 
+def _identify_visible_elements(driver):
+    visible_elements = driver.find_elements_by_xpath("//*")
+    for element in visible_elements:
+        try:
+            if element.is_displayed():
+                driver.execute_script("arguments[0].setAttribute('nate-visible', true)", element);
+        except StaleElementReferenceException:
+            pass
+
+
 def capture_page_prior_to_action(f):
     @wraps(f)
     def decorated(driver, selector_id, *args, **kwargs):
         file_location = f'./tmp/img_logs/{f.__name__}_{selector_id}.png'
         driver.save_screenshot(file_location)
+
+        _identify_visible_elements(driver)
 
         with open(f'./tmp/html_logs/{f.__name__}_{selector_id}.html', 'w') as html_file:
             html_file.write(driver.page_source)
@@ -32,20 +48,22 @@ def capture_page_prior_to_action(f):
 def append_action(action_type, selector_type):
     def wrapper(f):
         @wraps(f)
-        def decorated(*args, **kwargs):
+        def decorated(driver, selector_id, *args, **kwargs):
             if action_type == ACTION_TYPE.CLICK:
                 if selector_type == SELECTOR_TYPE.ID:
-                    args[0].execute_script(
-                        f'document.getElementById("{args[1]}").setAttribute("nate-action-type", "{action_type}");'
+                    driver.execute_script(
+                        f'document.getElementById("{selector_id}").setAttribute("nate-action-type", "{action_type}");'
                     )
                 elif selector_type == SELECTOR_TYPE.TAG:
-                    args[0].execute_script(
-                        f'document.getElementsByTagName("{args[1]}")[0].setAttribute("nate-action-type", "{action_type}");'
+                    driver.execute_script(
+                        f'document.getElementsByTagName("{selector_id}")[0].setAttribute("nate-action-type", "{action_type}");'
                     )
                 elif selector_type == SELECTOR_TYPE.CLASS:
-                    args[0].execute_script(
-                        f'document.getElementsByClassName("{args[1]}")[0].setAttribute("nate-action-type", "{action_type}");'
+                    driver.execute_script(
+                        f'document.getElementsByClassName("{selector_id}")[0].setAttribute("nate-action-type", "{action_type}");'
                     )
+                elif selector_type == SELECTOR_TYPE.XPATH:
+                    pass
                 else:
                     raise ValueError(
                         f'selector_type, {selector_type}, not allowed for action_type {action_type}'
@@ -53,8 +71,8 @@ def append_action(action_type, selector_type):
 
             elif action_type == ACTION_TYPE.FILL:
                 if selector_type == SELECTOR_TYPE.ID:
-                    args[0].execute_script(
-                        f'document.getElementById("{args[1]}").setAttribute("nate-dict-key", "{args[2]}");'
+                    driver.execute_script(
+                        f'document.getElementById("{selector_id}").setAttribute("nate-dict-key", "{args[0]}");'
                     )
                 else:
                     raise ValueError(
@@ -65,7 +83,7 @@ def append_action(action_type, selector_type):
                     f'Unknown action_type, {action_type}'
                 )
 
-            return f(*args, **kwargs)
+            return f(driver, selector_id, *args, **kwargs)
         return decorated
     return wrapper
 
@@ -102,3 +120,11 @@ def click_element_by_class_name(driver, class_name):
     driver.find_element_by_class_name(
         class_name
     ).click()
+
+
+@append_action(ACTION_TYPE.CLICK, SELECTOR_TYPE.XPATH)
+def click_element_by_xpath(driver, xpath):
+    driver.find_element(
+        By.XPATH,
+        xpath
+    ).click();

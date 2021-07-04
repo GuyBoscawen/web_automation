@@ -8,8 +8,8 @@ from website_actions import nate
 
 
 def _execute_webdriver_actions(driver, results, actions):
-    for action, args in actions:
-        action(driver, results, *args)
+    for action in actions:
+        action(driver, results)
     time.sleep(5)
 
 

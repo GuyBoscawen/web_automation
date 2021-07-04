@@ -1,4 +1,4 @@
-<html lang="en"><head>
+<html lang="en" nate-visible="true"><head>
   <title>Page 3</title>
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -6,8 +6,8 @@
   <script type="text/javascript" src="./lib/index.js"></script>
 </head>
 
-<body>
-  <h1>Page 3</h1>
+<body nate-visible="true">
+  <h1 nate-visible="true">Page 3</h1>
   <div id="popup" hidden="">
     <section>
       <h2>Popup time
@@ -16,57 +16,57 @@
     </h2></section>
     <img src="https://media.giphy.com/media/dwmNhd5H7YAz6/giphy.gif">
   </div>
-  <section class="register-body">
-    <div class="container d-flex justify-content-center py-5">
-      <form class="col-md-8" method="post" onsubmit="return false">
-        <p class="col-12 pb-md-4 px-0">
+  <section class="register-body" nate-visible="true">
+    <div class="container d-flex justify-content-center py-5" nate-visible="true">
+      <form class="col-md-8" method="post" onsubmit="return false" nate-visible="true">
+        <p class="col-12 pb-md-4 px-0" nate-visible="true">
         </p>
-        <div class="form-group my-4 row">
-          <label class="col-sm-2 col-form-label px-2">Name <span class="required-text">*</span></label>
-          <div class="col-sm-10">
-            <input type="text" id="name" class="form-control" nate-dict-key="nate">
+        <div class="form-group my-4 row" nate-visible="true">
+          <label class="col-sm-2 col-form-label px-2" nate-visible="true">Name <span class="required-text" nate-visible="true">*</span></label>
+          <div class="col-sm-10" nate-visible="true">
+            <input type="text" id="name" class="form-control" nate-visible="true" nate-dict-key="nate">
             <p id="name_message" class="text-danger m-0"></p>
           </div>
         </div>
-        <div class="form-group my-4 row">
-          <label class="col-sm-2 col-form-label px-2">Password <span class="required-text">*</span></label>
-          <div class="col-sm-10">
-            <input type="password" id="pwd" class="form-control">
+        <div class="form-group my-4 row" nate-visible="true">
+          <label class="col-sm-2 col-form-label px-2" nate-visible="true">Password <span class="required-text" nate-visible="true">*</span></label>
+          <div class="col-sm-10" nate-visible="true">
+            <input type="password" id="pwd" class="form-control" nate-visible="true">
             <p id="pwd_message" class="text-danger m-0"></p>
           </div>
         </div>
-        <div class="form-group my-4 row">
-          <label class="col-sm-2 col-form-label px-2">Phone <span class="required-text">*</span></label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="phone" onkeypress="javascript:return isNumber(event)">
+        <div class="form-group my-4 row" nate-visible="true">
+          <label class="col-sm-2 col-form-label px-2" nate-visible="true">Phone <span class="required-text" nate-visible="true">*</span></label>
+          <div class="col-sm-10" nate-visible="true">
+            <input type="text" class="form-control" id="phone" onkeypress="javascript:return isNumber(event)" nate-visible="true">
             <p id="phone_message" class="text-danger m-0"></p>
           </div>
         </div>
-        <div class="form-group my-4 row">
-          <label class="col-sm-2 col-form-label px-2">Email <span class="required-text">*</span></label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="email">
+        <div class="form-group my-4 row" nate-visible="true">
+          <label class="col-sm-2 col-form-label px-2" nate-visible="true">Email <span class="required-text" nate-visible="true">*</span></label>
+          <div class="col-sm-10" nate-visible="true">
+            <input type="email" class="form-control" id="email" nate-visible="true">
             <p id="email_message" class="text-danger m-0"></p>
           </div>
         </div>
-        <div class="form-group my-4 row">
-          <label class="col-sm-4 col-form-label">Gender <span class="required-text">*</span></label>
-          <div class="col-sm-8 choice1">
-            <div class="form-check form-check-inline">
-              <input class="form-check" checked="" type="checkbox" id="defaultCheck1" value="male">
-              <label class="form-check-label" for="defaultCheck1" style="color: #8B8B8B">Male</label>
+        <div class="form-group my-4 row" nate-visible="true">
+          <label class="col-sm-4 col-form-label" nate-visible="true">Gender <span class="required-text" nate-visible="true">*</span></label>
+          <div class="col-sm-8 choice1" nate-visible="true">
+            <div class="form-check form-check-inline" nate-visible="true">
+              <input class="form-check" checked="" type="checkbox" id="defaultCheck1" value="male" nate-visible="true">
+              <label class="form-check-label" for="defaultCheck1" style="color: #8B8B8B" nate-visible="true">Male</label>
             </div>
-            <div class="form-check form-check-inline ml-5">
-              <input class="form-check" type="checkbox" id="defaultCheck2" value="female">
-              <label class="form-check-label" for="defaultCheck2" style="color: #8B8B8B">Female</label>
+            <div class="form-check form-check-inline ml-5" nate-visible="true">
+              <input class="form-check" type="checkbox" id="defaultCheck2" value="female" nate-visible="true">
+              <label class="form-check-label" for="defaultCheck2" style="color: #8B8B8B" nate-visible="true">Female</label>
             </div>
             <p id="check_message" class="text-danger m-0"></p>
           </div>
         </div>
 
     </form></div>
-    <p class="text-center pb-4 feedback-body mt-5">
-      <button class="py-3 px-5" type="submit" id="btn" onclick="submitRegisterForm()">Submit
+    <p class="text-center pb-4 feedback-body mt-5" nate-visible="true">
+      <button class="py-3 px-5" type="submit" id="btn" onclick="submitRegisterForm()" nate-visible="true">Submit
         Application</button>
     </p>
     

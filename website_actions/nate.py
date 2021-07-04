@@ -15,13 +15,16 @@ def _navigate_page_1(driver, results):
 
 
 def _navigate_page_2(driver, results, customer_info):
+    time.sleep(13)
+    city = customer_info['city'].capitalize()
     driver_helpers.click_element_by_class_name(driver, "custom-select-trigger")
-
-    driver_helpers.click_element_by_class_name(driver, "custom-option")
+    driver_helpers.click_element_by_xpath(driver, f'//span[text()="{city}"]')
     driver_helpers.click_element_by_id(driver, "next-page-btn")
 
 
 def _navigate_page_3(driver, results, customer_info):
+    time.sleep(5)
+    driver.execute_script(f'document.getElementById("popup").hidden=true;')
     driver_helpers.fill_element_by_id(driver, 'name', customer_info['name'])
     driver_helpers.fill_element_by_id(driver, 'pwd', customer_info['password'])
     driver_helpers.fill_element_by_id(driver, 'phone', customer_info['phone'])
@@ -32,8 +35,8 @@ def _navigate_page_3(driver, results, customer_info):
 
 def get_actions(customer_info):
     return [
-        (_fetch_nate_tech_challenge_start_page, []),
-        (_navigate_page_1, []),
-        (_navigate_page_2, [customer_info]),
-        (_navigate_page_3, [customer_info]),
+        lambda driver, results: _fetch_nate_tech_challenge_start_page(driver, results),
+        lambda driver, results: _navigate_page_1(driver, results),
+        lambda driver, results: _navigate_page_2(driver, results, customer_info),
+        lambda driver, results: _navigate_page_3(driver, results, customer_info),
     ]

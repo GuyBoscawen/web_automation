@@ -1,22 +1,22 @@
-<html><head>
+<html nate-visible="true"><head>
     <title>Page 2</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script type="text/javascript" src="./lib/jquery.js"></script>
     <script type="text/javascript" src="./lib/index.js"></script>
 </head>
 
-<body>
+<body nate-visible="true">
 
-    <h1>Page 2</h1>
-    <section id="time-container"><span>milliseconds since 1 January 1970: 1625399109467</span></section>
-    <section id="loading-msg">Loading...</section>
-    <section id="content-section" hidden="">
-        <input type="button" id="next-page-btn" onclick="location.href='./page3.html'" value="Next page" disabled="">
-        <div class="custom-select-wrapper"><select name="sources" id="sources" class="custom-select" style="display: none;">
+    <h1 nate-visible="true">Page 2</h1>
+    <section id="time-container" nate-visible="true"><span>milliseconds since 1 January 1970: 1625417023662</span></section>
+    <section id="loading-msg" hidden="">Loading...</section>
+    <section id="content-section" nate-visible="true">
+        <input type="button" id="next-page-btn" onclick="location.href='./page3.html'" value="Next page" disabled="" nate-visible="true">
+        <div class="custom-select-wrapper" nate-visible="true"><select name="sources" id="sources" class="custom-select" style="display: none;">
             <option value="London">London</option>
             <option value="New YorkS">Amsterdam</option>
             <option value="New York">New York</option>
-        </select><div class="custom-select"><span class="custom-select-trigger">City</span><div class="custom-options"><span class="custom-option undefined" data-value="London">London</span><span class="custom-option undefined" data-value="New YorkS">Amsterdam</span><span class="custom-option undefined" data-value="New York">New York</span></div></div></div>
+        </select><div class="custom-select" nate-visible="true"><span class="custom-select-trigger" nate-visible="true">City</span><div class="custom-options"><span class="custom-option undefined" data-value="London">London</span><span class="custom-option undefined" data-value="New YorkS">Amsterdam</span><span class="custom-option undefined" data-value="New York">New York</span></div></div></div>
     </section>
     <script>
         updateTime();
