@@ -12,7 +12,7 @@ import web_automation
 def _get_headless_driver(_):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome(executable_path='./chromedriver', options=chrome_options)
+    driver = webdriver.Chrome(executable_path='./mac_drivers/chromedriver', options=chrome_options)
     driver.implicitly_wait(10)
     return driver
 

@@ -5,6 +5,14 @@ import driver_helpers
 _NATE_START_PAGE = 'https://nate-eu-west-1-prediction-test-webpages.s3-eu-west-1.amazonaws.com/tech-challenge/page1.html'
 
 
+def _capitalise_city(city):
+    capitalised_words = map(
+        lambda word: word.capitalize(),
+        city.split(' ')
+    )
+    return " ".join(capitalised_words)
+
+
 def _get_nate_start_page():
     return _NATE_START_PAGE
 
@@ -20,7 +28,7 @@ def _navigate_page_1(driver):
 
 def _navigate_page_2(driver, customer_info):
     time.sleep(13)
-    city = customer_info['city'].capitalize()
+    city = _capitalise_city(customer_info['city'])
     driver_helpers.click_element_by_class_name(driver, "custom-select-trigger")
     driver_helpers.click_element_by_xpath(driver, f'//span[text()="{city}"]')
     driver_helpers.click_element_by_id(driver, "next-page-btn")
