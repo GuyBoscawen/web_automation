@@ -2,18 +2,19 @@ import argparse
 import time
 
 import webdriver_conf
-import website_actions
 
 from website_actions import nate
 
 
-def _execute_webdriver_actions(driver, results, actions):
+def _execute_webdriver_actions(driver, actions):
     for action in actions:
-        action(driver, results)
+        action(driver)
     time.sleep(5)
 
 
 def _navigate_site(drivers):
+    print('Navigating site')
+
     customer_info = {
         "city": "london",
         "name": "nate",
@@ -27,13 +28,14 @@ def _navigate_site(drivers):
 
     for driver_name in drivers:
         driver = webdriver_conf.get_webdriver(driver_name)
-        results = []
 
-        _execute_webdriver_actions(driver, results, actions)
+        print(f'Starting execution with driver: {driver}')
+        _execute_webdriver_actions(driver, actions)
 
         driver.close()
 
-        return "success"
+    print('success')
+    return "success"
 
 
 if __name__ == "__main__":
@@ -44,8 +46,9 @@ if __name__ == "__main__":
         help='sets drivers in use',
         nargs='+',
         default=['firefox', 'chrome'],
-        choices=['firefox', 'chrome']
+        choices=['firefox', 'chrome', 'firefox_remote', 'chrome_remote']
     )
 
     args = parser.parse_args()
+    time.sleep(5)
     _navigate_site(args.drivers)

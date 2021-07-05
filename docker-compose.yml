@@ -1,0 +1,22 @@
+version: '1'
+
+services:
+  chrome_driver:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
+    volumes:
+      - /dev/shm:/dev/shm
+  
+  firefox_driver:
+    image: selenium/standalone-firefox:latest
+    ports:
+      - 4445:4445
+    volumes:
+      - /dev/shm:/dev/shm
+
+  app:
+    build: .
+    depends_on: 
+      - chrome_driver
+      - firefox_driver
