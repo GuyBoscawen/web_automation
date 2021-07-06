@@ -15,6 +15,7 @@ pip install -r requirements.txt
 # Running web automation locally:
 
 ```
+cd app
 python web_automation.py -d chrome
 ```
 
